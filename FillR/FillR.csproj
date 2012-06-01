@@ -40,7 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="DefaultFillers\NameFiller.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="FillR.cs" />
+    <Compile Include="IPropertyFiller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
