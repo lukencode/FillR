@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace FillR
 {
-    public interface IPropertyFiller<T>
+    public interface IPropertyFiller
     {
-        bool ShouldFill(string propertyName, Type propertyType);
-        T Fill(string propertyName, Type propertyType);
+        bool ShouldFill(PropertyInfo prop);
+        object Fill(PropertyInfo prop);
     }
 }

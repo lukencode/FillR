@@ -7,19 +7,36 @@ namespace FillR.Extensions
 {
     internal static class EnumerableExtensions
     {
-        internal static T PickRandom<T>(this IEnumerable<T> source)
+        internal static T PickRandom<T>(this IEnumerable<T> source, Random random = null)
         {
-            return source.PickRandom(1).Single();
+            if (random == null)
+                random = new Random();
+
+            var index = random.Next(source.Count() - 1);
+
+            return source.ElementAt(index);
         }
 
-        internal static IEnumerable<T> PickRandom<T>(this IEnumerable<T> source, int count)
+        internal static IEnumerable<T> Shuffle<T>(this IEnumerable<T> sequence, Random random = null)
         {
-            return source.Shuffle().Take(count);
-        }
+            if (random == null)
+                random = new Random();
 
-        internal static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source)
-        {
-            return source.OrderBy(x => Guid.NewGuid());
+            int Length = sequence.Count();
+            T[] retArray = sequence.ToArray();
+
+            for (int i = 0; i < Length; i += 1)
+            {
+                int swapIndex = random.Next(i, Length);
+                if (swapIndex != i)
+                {
+                    T temp = retArray[i];
+                    retArray[i] = retArray[swapIndex];
+                    retArray[swapIndex] = temp;
+                }
+            }
+
+            return retArray;
         }
     }
 }

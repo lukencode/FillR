@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using FillR.Extensions;
 
 namespace FillR.DefaultFillers
 {
-    public class NameFiller : IPropertyFiller<string>
+    public class NameFiller : IPropertyFiller
     {
-        private Random _rand;
-
         private static Regex _combinedRegex = new Regex("name|fullname|firstname|lastname|surname|middlename|maidenname", RegexOptions.IgnoreCase);
         private static Regex _fullNameRegex = new Regex("name|fullname", RegexOptions.IgnoreCase);
         private static Regex _firstNameRegex = new Regex("firstname|middlename", RegexOptions.IgnoreCase);
@@ -21,21 +20,20 @@ namespace FillR.DefaultFillers
 
         public NameFiller()
         {
-            _rand = new Random();
         }
 
-        public bool ShouldFill(string propertyName, Type propertyType)
+        public bool ShouldFill(PropertyInfo prop)
         {
-            if (propertyType != typeof(string))
+            if (prop.PropertyType != typeof(string))
                 return false;
 
-            var cleaned = propertyName.Replace("_", "");
+            var cleaned = prop.Name.Replace("_", "");
             return _combinedRegex.IsMatch(cleaned);
         }
 
-        public string Fill(string propertyName, Type propertyType)
+        public object Fill(PropertyInfo prop)
         {
-            var cleaned = propertyName.Replace("_", "");
+            var cleaned = prop.Name.Replace("_", "");
 
             if (_firstNameRegex.IsMatch(cleaned))
             {
