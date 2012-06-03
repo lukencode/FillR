@@ -13,10 +13,10 @@ namespace FillR.DefaultFillers
     {
         private Random _rand;
 
-        private static Regex _combinedRegex = new Regex("name|fullname|firstname|lastname|surname|middlename|maidenname", RegexOptions.IgnoreCase);
-        private static Regex _fullNameRegex = new Regex("name|fullname", RegexOptions.IgnoreCase);
-        private static Regex _firstNameRegex = new Regex("firstname|middlename", RegexOptions.IgnoreCase);
-        private static Regex _surnameRegex = new Regex("lastname|surname|maidenname", RegexOptions.IgnoreCase);
+        private static Regex _combinedRegex = new Regex(@"\b(name|fullname|firstname|lastname|surname|middlename|maidenname)\b", RegexOptions.IgnoreCase);
+        private static Regex _fullNameRegex = new Regex(@"\b(name|fullname)\b", RegexOptions.IgnoreCase);
+        private static Regex _firstNameRegex = new Regex(@"\b(firstname|middlename)\b", RegexOptions.IgnoreCase);
+        private static Regex _surnameRegex = new Regex(@"\b(lastname|surname|maidenname)\b", RegexOptions.IgnoreCase);
 
         public NameFiller(Random r)
         {

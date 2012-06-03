@@ -10,6 +10,7 @@ namespace Tests
         public string Last_Name { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
+        public string Company { get; set; }
     }
 
     [TestClass]
@@ -23,7 +24,8 @@ namespace Tests
             Assert.IsTrue(!string.IsNullOrWhiteSpace(person.FirstName), "First Name Missing");
             Assert.IsTrue(!string.IsNullOrWhiteSpace(person.Last_Name), "Surname Name Missing");
             Assert.IsTrue(!string.IsNullOrWhiteSpace(person.Username), "Username Name Missing");
-            Assert.IsTrue(!string.IsNullOrWhiteSpace(person.Email), "Email Name Missing"); 
+            Assert.IsTrue(!string.IsNullOrWhiteSpace(person.Email), "Email Name Missing");
+            Assert.IsTrue(!string.IsNullOrWhiteSpace(person.Company), "Company Name Missing"); 
         }
     }
 }
