@@ -9,6 +9,13 @@ namespace FillR.DefaultFillers
 {
     public class UsernameFiller : IPropertyFiller
     {
+        private Random _rand;
+
+        public UsernameFiller(Random r)
+        {
+            _rand = r;
+        }
+
         public bool ShouldFill(System.Reflection.PropertyInfo prop)
         {
             return prop.Name.ToLower().Replace("_", "").Contains("username");
@@ -18,21 +25,20 @@ namespace FillR.DefaultFillers
         {
             var username = "";
 
-            var rand = new Random();
-            var i = rand.Next(3);
+            var i = _rand.Next(3);
 
             switch (i)
             {
                 case 0:
-                    username = Names.FirstNames.PickRandom();
+                    username = Names.FirstNames.PickRandom(_rand);
                     break;
 
                 case 1:
-                    username = Names.Surnames.PickRandom();
+                    username = Names.Surnames.PickRandom(_rand);
                     break;
 
                 default:
-                    username = Names.FirstNames.PickRandom() + "." + Names.Surnames.PickRandom();
+                    username = Names.FirstNames.PickRandom(_rand) + "." + Names.Surnames.PickRandom(_rand);
                     break;
             }
 

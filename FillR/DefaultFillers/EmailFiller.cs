@@ -11,6 +11,13 @@ namespace FillR.DefaultFillers
 {
     public class EmailFiller : IPropertyFiller
     {
+        private Random _rand;
+
+        public EmailFiller(Random r)
+        {
+            _rand = r;
+        }
+
         public bool ShouldFill(PropertyInfo prop)
         {
             if (prop.PropertyType != typeof(string))
@@ -21,13 +28,11 @@ namespace FillR.DefaultFillers
 
         public object Fill(PropertyInfo prop)
         {
-            var username = new UsernameFiller().Fill(prop).ToString();
-            var domain = Company.Names.PickRandom() + "." + Internet.TopLevelDomains.PickRandom();
+            var username = new UsernameFiller(_rand).Fill(prop).ToString();
+            var domain = Company.Names.PickRandom(_rand) + "." + Internet.TopLevelDomains.PickRandom(_rand);
 
-            var rand = new Random();
-
-            if (rand.Next(3) == 0)
-                domain += "." + Internet.CountryDomains.PickRandom();
+            if (_rand.Next(3) == 0)
+                domain += "." + Internet.CountryDomains.PickRandom(_rand);
 
             return (username + "@" + domain).ToLower();
         }

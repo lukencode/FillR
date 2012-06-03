@@ -8,16 +8,15 @@ namespace FillR
 {
     public static class FillR
     {
-        private static List<IPropertyFiller> _fillers = new List<IPropertyFiller> { new NameFiller(), new UsernameFiller(), new EmailFiller() };
-
         public static T Fill<T>(this T item)
         {
             var type = typeof(T);
             var properties = GetSettableProperties(type);
+            var fillers = GetDefaultFillers(new Random());
 
             foreach (var p in properties)
             {
-                var filler = _fillers.FirstOrDefault(f => f.ShouldFill(p));
+                var filler = fillers.FirstOrDefault(f => f.ShouldFill(p));
 
                 if (filler != null)
                 {
@@ -40,6 +39,18 @@ namespace FillR
             var list = new List<PropertyInfo>(fromFields.Length);
             list.AddRange(fromFields.Where(info => info.CanWrite));
             return list.ToArray();
+        }
+
+        private static List<IPropertyFiller> GetDefaultFillers(Random r)
+        {
+            var list = new List<IPropertyFiller>()
+            {
+                new NameFiller(r), 
+                new UsernameFiller(r), 
+                new EmailFiller(r)
+            };
+
+            return list;
         }
     }
 }
