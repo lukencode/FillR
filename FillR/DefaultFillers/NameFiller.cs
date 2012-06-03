@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using FillR.Data;
 using FillR.Extensions;
 
 namespace FillR.DefaultFillers
@@ -14,13 +15,6 @@ namespace FillR.DefaultFillers
         private static Regex _fullNameRegex = new Regex("name|fullname", RegexOptions.IgnoreCase);
         private static Regex _firstNameRegex = new Regex("firstname|middlename", RegexOptions.IgnoreCase);
         private static Regex _surnameRegex = new Regex("lastname|surname|maidenname", RegexOptions.IgnoreCase);
-
-        private static List<string> _firstNames = new List<string> { "Luke", "John", "Mary" };
-        private static List<string> _surnames = new List<string> { "Lowrey", "Smith", "Peters" };
-
-        public NameFiller()
-        {
-        }
 
         public bool ShouldFill(PropertyInfo prop)
         {
@@ -37,15 +31,15 @@ namespace FillR.DefaultFillers
 
             if (_firstNameRegex.IsMatch(cleaned))
             {
-                return _firstNames.PickRandom();
+                return Names.FirstNames.PickRandom();
             }
             else if (_surnameRegex.IsMatch(cleaned))
             {
-                return _surnames.PickRandom();
+                return Names.Surnames.PickRandom();
             }
             else
             {
-                return _firstNames.PickRandom() + " " + _surnames.PickRandom();
+                return Names.FirstNames.PickRandom() + " " + Names.Surnames.PickRandom();
             }
         }
     }

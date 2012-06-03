@@ -40,7 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Company.cs" />
+    <Compile Include="Data\Internet.cs" />
+    <Compile Include="Data\Names.cs" />
+    <Compile Include="DefaultFillers\EmailFiller.cs" />
     <Compile Include="DefaultFillers\NameFiller.cs" />
+    <Compile Include="DefaultFillers\UsernameFiller.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="FillR.cs" />
     <Compile Include="IPropertyFiller.cs" />

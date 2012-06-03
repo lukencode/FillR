@@ -8,7 +8,7 @@ namespace FillR
 {
     public static class FillR
     {
-        private static List<IPropertyFiller> _fillers = new List<IPropertyFiller> { new NameFiller() };
+        private static List<IPropertyFiller> _fillers = new List<IPropertyFiller> { new NameFiller(), new UsernameFiller(), new EmailFiller() };
 
         public static T Fill<T>(this T item)
         {
