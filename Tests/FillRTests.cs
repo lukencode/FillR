@@ -27,7 +27,7 @@ namespace Tests
             Assert.IsTrue(!string.IsNullOrWhiteSpace(person.Username), "Username Name Missing");
             Assert.IsTrue(!string.IsNullOrWhiteSpace(person.Email), "Email Name Missing");
             Assert.IsTrue(!string.IsNullOrWhiteSpace(person.Company), "Company Name Missing");
-            Assert.IsTrue(!person.DOB.HasValue, "DOB is missing");
+            Assert.IsTrue(person.DOB.HasValue, "DOB is missing");
         }
     }
 }
