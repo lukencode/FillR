@@ -48,7 +48,8 @@ namespace FillR
                 new NameFiller(r), 
                 new UsernameFiller(r), 
                 new EmailFiller(r), 
-                new CompanyFiller(r)
+                new CompanyFiller(r),
+                new DateOfBirthFiller(r)
             };
 
             return list;
