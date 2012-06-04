@@ -44,6 +44,7 @@
     <Compile Include="Data\Internet.cs" />
     <Compile Include="Data\Names.cs" />
     <Compile Include="DefaultFillers\CompanyFiller.cs" />
+    <Compile Include="DefaultFillers\DateOfBirthFiller.cs" />
     <Compile Include="DefaultFillers\EmailFiller.cs" />
     <Compile Include="DefaultFillers\NameFiller.cs" />
     <Compile Include="DefaultFillers\UsernameFiller.cs" />
